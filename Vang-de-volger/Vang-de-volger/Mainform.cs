@@ -19,11 +19,20 @@ namespace Vang_de_volger
         public const int y_gridSize = 15;  //Amount of tiles in Y-direction on the field
         public const int tileSize = 40; //set how big the tiles are, this value should match the tile Image
         private bool _paused = false;  //bool to track whether the paused button was pressed
+        private Size endPbSize;
 
         public MainForm()
         {
             InitializeComponent();
             GenerateField();
+
+            pause_Label.Left = x_gridSize * tileSize + tileSize;
+            restart_Button.Left = x_gridSize * tileSize + tileSize;
+            endPbSize = new Size(x_gridSize * tileSize, x_gridSize * tileSize);
+            endPb.Size = endPbSize;
+            endPb.Left = 0; endPb.Top = 0;
+            endPb.Visible = false;
+            endPb.BackColor = Color.Transparent;
         }
 
         public void GenerateField()
@@ -33,5 +42,14 @@ namespace Vang_de_volger
             this.Refresh();
         }
 
+        private void pause_Label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void restart_Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -71,7 +71,6 @@ namespace Vang_de_volger
                     _unityTypeArray[randomTypeNR] = tempType;
                 }
             }
-
         }
 
         public void CreateField(Form PlayForm)
@@ -80,7 +79,7 @@ namespace Vang_de_volger
 
             int tilecounter = 0;
 
-            //Create all the Tiles and Units
+            //Create all the Tiles and put Units on the tiles
             for (int y = 0; y < MainForm.y_gridSize; y++)
             {
                 for (int x = 0; x < MainForm.x_gridSize; x++)
@@ -108,12 +107,9 @@ namespace Vang_de_volger
                         Unit Tile = new Unit(Unit.UNITTYPE.TILE);
                         _playfield[tilecounter].MyUnit = Tile;
                     }
-
-
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
                     _playfield[tilecounter].Redraw();
-                    tilecounter++;
-                    
+                    tilecounter++;                 
                 }
             }
       
@@ -148,6 +144,7 @@ namespace Vang_de_volger
                 _playfield[tc].AddNeighbours();
             }
         }//CreateField
+
 
 
     }//Field

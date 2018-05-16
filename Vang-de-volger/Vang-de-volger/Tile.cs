@@ -29,6 +29,59 @@ namespace Vang_de_volger
             panelPb.Image = MyUnit.myImage;
         }
 
+        public bool[] moveArray = new bool[4]; //Array containing bool's that are used to determine whether a direction is moveable for boxes and the hero
+        public bool[] moveArrayVillain = new bool[4];  //Array containing bool's that are used to determine whether a direction is moveable for the villain
+
+        public void Possible_moves()
+        {
+            for (int i = 0; i < myNeighbours.Length; i++)
+            {
+                if (myNeighbours[i] != null)
+                {
+                    if (MyUnit.MyType == Unit.UNITTYPE.BOX)
+                    {
+                        if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.TILE)
+                        {
+                            moveArray[i] = true;
+                        }
+                        else
+                        {
+                            moveArray[i] = false;
+                        }
+                    }
+                    else
+                    {
+                        if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.VILLAIN)
+                        {
+                            moveArray[i] = false;
+                        }
+                        else
+                        {
+                            moveArray[i] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Possible_moves_villain()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (myNeighbours[i] != null)
+                {
+                    if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BOX)
+                    {
+                        moveArrayVillain[i] = false;
+                    }
+                    else
+                    {
+                        moveArrayVillain[i] = true;
+                    }
+                }
+            }
+        }
+
 
         public Tile neighbourLeft;
         public Tile neighbourRight;
