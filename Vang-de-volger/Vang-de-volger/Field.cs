@@ -116,7 +116,7 @@ namespace Vang_de_volger
                     
                 }
             }
-
+      
             _player = new Hero(Unit.UNITTYPE.HERO);
             _playfield[0].MyUnit = _player;
             _playfield[0].Redraw();
@@ -124,6 +124,31 @@ namespace Vang_de_volger
             _enemy = new Villain(Unit.UNITTYPE.VILLAIN);
             _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
+
+            //Add tile neighbours
+            for (int tc = 0; tc < NUM_OF_TILES; tc++)
+            {
+                //Add neighbours to Array in Tile Class
+                if (tc > MainForm.x_gridSize - 1)
+                {
+                    _playfield[tc].neighbourTop = _playfield[tc - MainForm.x_gridSize];
+                }
+                if (tc < NUM_OF_TILES - MainForm.x_gridSize)
+                {
+                    _playfield[tc].neighbourBottom = _playfield[tc + MainForm.x_gridSize];
+                }
+                if (tc % MainForm.x_gridSize < MainForm.x_gridSize - 1)
+                {
+                    _playfield[tc].neighbourRight = _playfield[tc + 1];
+                }
+                if (tc % MainForm.x_gridSize > 0)
+                {
+                    _playfield[tc].neighbourLeft = _playfield[tc - 1];
+                }
+                _playfield[tc].AddNeighbours();
+            }
+
+
         }//CreateField
 
 

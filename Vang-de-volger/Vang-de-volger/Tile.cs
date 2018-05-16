@@ -28,5 +28,29 @@ namespace Vang_de_volger
         {
             panelPb.Image = MyUnit.myImage;
         }
+
+
+        public Tile[] myNeighbours = new Tile[4];
+        public void AddNeighbours()
+        {
+            myNeighbours[0] = neighbourLeft;
+            myNeighbours[1] = neighbourRight;
+            myNeighbours[2] = neighbourTop;
+            myNeighbours[3] = neighbourBottom;
+        }
+        public Tile neighbourLeft;
+        public Tile neighbourRight;
+        public Tile neighbourTop;
+        public Tile neighbourBottom;
+
+        public enum NEIGHBOURS
+        {
+            LEFT,
+            RIGHT,
+            TOP,
+            BOTTOM
+        }
+        public NEIGHBOURS MyNeighbours { get; set; }
     }
+
 }
