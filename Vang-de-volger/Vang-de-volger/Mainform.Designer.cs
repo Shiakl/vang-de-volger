@@ -1,6 +1,6 @@
 ﻿namespace Vang_de_volger
 {
-    partial class Form1
+    partial class Mainform
     {
         /// <summary>
         /// Required designer variable.
