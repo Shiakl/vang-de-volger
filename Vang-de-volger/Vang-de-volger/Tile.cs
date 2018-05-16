@@ -30,6 +30,10 @@ namespace Vang_de_volger
         }
 
 
+        public Tile neighbourLeft;
+        public Tile neighbourRight;
+        public Tile neighbourTop;
+        public Tile neighbourBottom;
         public Tile[] myNeighbours = new Tile[4];
         public void AddNeighbours()
         {
@@ -38,10 +42,6 @@ namespace Vang_de_volger
             myNeighbours[2] = neighbourTop;
             myNeighbours[3] = neighbourBottom;
         }
-        public Tile neighbourLeft;
-        public Tile neighbourRight;
-        public Tile neighbourTop;
-        public Tile neighbourBottom;
 
         public enum NEIGHBOURS
         {
@@ -50,7 +50,6 @@ namespace Vang_de_volger
             TOP,
             BOTTOM
         }
-        public NEIGHBOURS MyNeighbours { get; set; }
     }
 
 }

@@ -80,7 +80,7 @@ namespace Vang_de_volger
 
             int tilecounter = 0;
 
-            //Draw all the tiles and units
+            //Create all the Tiles and Units
             for (int y = 0; y < MainForm.y_gridSize; y++)
             {
                 for (int x = 0; x < MainForm.x_gridSize; x++)
@@ -147,8 +147,6 @@ namespace Vang_de_volger
                 }
                 _playfield[tc].AddNeighbours();
             }
-
-
         }//CreateField
 
 
