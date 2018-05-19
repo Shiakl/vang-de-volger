@@ -51,5 +51,28 @@ namespace Vang_de_volger
         {
 
         }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_paused == false)
+            {
+                if (e.KeyCode == Keys.Left)
+                {
+                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.LEFT);
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.RIGHT);
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.TOP);
+                }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.BOTTOM);
+                }
+            }
+        }
     }
 }

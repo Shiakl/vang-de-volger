@@ -76,6 +76,7 @@
             this.Controls.Add(this.pause_Label);
             this.Name = "MainForm";
             this.Text = "Vang de volger";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.endPb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -13,8 +13,6 @@ namespace Vang_de_volger
     {
         const int NUM_OF_TILES = MainForm.x_gridSize * MainForm.y_gridSize; //Number of tiles on the field
         private Tile[] _playfield; //Tile class array
-        public Tile heroTile;
-        public Tile villainTile;
 
         public Hero _player;
         public Villain _enemy;
@@ -145,6 +143,40 @@ namespace Vang_de_volger
             }
         }//CreateField
 
+        public Tile FindHero()
+        {
+            int searchCounter = 0;
+            while(!(_playfield[searchCounter].MyUnit is Hero))
+            {
+                searchCounter++;
+            }
+            return _playfield[searchCounter];
+        }
+
+        public Tile FindVillain()
+        {
+            int searchCounter = 0;
+            while (!(_playfield[searchCounter].MyUnit is Hero))
+            {
+                searchCounter++;
+            }
+            return _playfield[searchCounter];
+        }
+
+        public void Move_Unit(Unit unit, Tile.DIRECTIONS direction)
+        {
+            if (unit is Hero)
+            {
+                Hero selectedHero = new Hero(Unit.UNITTYPE.HERO);
+                selectedHero = unit as Hero;
+                selectedHero.move(FindHero(),direction);
+
+            }
+            else if (unit is Villain)
+            {
+
+            }
+        }
 
 
     }//Field

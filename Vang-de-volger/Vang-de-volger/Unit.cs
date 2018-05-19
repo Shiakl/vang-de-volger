@@ -36,5 +36,13 @@ namespace Vang_de_volger
             VILLAIN
         }
 
+        public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
+        {
+            Unit temp_Unit;
+            temp_Unit = old_Tile.MyUnit;
+            old_Tile.MyUnit = new_Tile.MyUnit;
+            new_Tile.MyUnit = temp_Unit;
+        }
+
     }
 }

@@ -30,7 +30,6 @@ namespace Vang_de_volger
         }
 
         public bool[] moveArray = new bool[4]; //Array containing bool's that are used to determine whether a direction is moveable for boxes and the hero
-        public bool[] moveArrayVillain = new bool[4];  //Array containing bool's that are used to determine whether a direction is moveable for the villain
 
         public void Possible_moves()
         {
@@ -64,6 +63,8 @@ namespace Vang_de_volger
             }
         }
 
+        public bool[] moveArrayVillain = new bool[4];  //Array containing bool's that are used to determine whether a direction is moveable for the villain
+
         public void Possible_moves_villain()
         {
             for (int i = 0; i < 4; i++)
@@ -96,7 +97,7 @@ namespace Vang_de_volger
             myNeighbours[3] = neighbourBottom;
         }
 
-        public enum NEIGHBOURS
+        public enum DIRECTIONS
         {
             LEFT,
             RIGHT,
