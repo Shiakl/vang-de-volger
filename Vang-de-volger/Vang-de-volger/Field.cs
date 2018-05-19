@@ -163,22 +163,6 @@ namespace Vang_de_volger
             return _playfield[searchCounter];
         }
 
-        public void Move_Unit(FieldComponent unit, Tile.DIRECTIONS direction)
-        {
-            if (unit is Hero)
-            {
-                Hero selectedHero;
-                selectedHero = unit as Hero;
-                selectedHero.move(FindHero(),direction);
-
-            }
-            else if (unit is Villain)
-            {
-
-            }
-        }
-
-
     }//Field
 
 }

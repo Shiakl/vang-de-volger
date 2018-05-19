@@ -93,19 +93,19 @@ namespace Vang_de_volger
             {
                 if (e.KeyCode == Keys.Left)
                 {
-                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.LEFT);
+                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.LEFT);
                 }
                 else if (e.KeyCode == Keys.Right)
                 {
-                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.RIGHT);
+                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.RIGHT);
                 }
                 else if (e.KeyCode == Keys.Up)
                 {
-                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.TOP);
+                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.TOP);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    _playZone.Move_Unit(_playZone._player, Tile.DIRECTIONS.BOTTOM);
+                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.BOTTOM);
                 }
             }
         }

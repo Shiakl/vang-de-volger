@@ -83,7 +83,6 @@ namespace Vang_de_volger
             }
         }
 
-
         public Tile neighbourLeft;
         public Tile neighbourRight;
         public Tile neighbourTop;
