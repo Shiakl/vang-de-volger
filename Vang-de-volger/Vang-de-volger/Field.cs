@@ -27,7 +27,7 @@ namespace Vang_de_volger
         //Assign Type values to tiles in a Tile class array depending on playfield size
         private const double _boxRatio = 0.2; //Determine the ratio of boxes:tiles
         private int _boxAmount = Convert.ToInt32(Math.Floor(NUM_OF_TILES * _boxRatio));
-        private void _Assign_Unit_Types()
+        private void _Create_UnitTypeArray()
         {
             //Put MYTYPE values in an array
             int i = 0;
@@ -73,7 +73,7 @@ namespace Vang_de_volger
 
         public void CreateField(Form PlayForm)
         {
-            _Assign_Unit_Types();
+            _Create_UnitTypeArray();
 
             int tilecounter = 0;
 
