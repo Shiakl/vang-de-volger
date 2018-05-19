@@ -37,9 +37,9 @@ namespace Vang_de_volger
             {
                 if (myNeighbours[i] != null)
                 {
-                    if (MyUnit.MyType == FieldComponent.UNITTYPE.BOX)
+                    if (MyUnit is Box)
                     {
-                        if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.TILE)
+                        if (myNeighbours[i].MyUnit is Ground)
                         {
                             moveArray[i] = true;
                         }
@@ -50,7 +50,7 @@ namespace Vang_de_volger
                     }
                     else
                     {
-                        if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.VILLAIN)
+                        if (myNeighbours[i].MyUnit is Block || myNeighbours[i].MyUnit is Villain)
                         {
                             moveArray[i] = false;
                         }
@@ -71,7 +71,7 @@ namespace Vang_de_volger
             {
                 if (myNeighbours[i] != null)
                 {
-                    if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BOX)
+                    if (myNeighbours[i].MyUnit is Block || myNeighbours[i].MyUnit is Box)
                     {
                         moveArrayVillain[i] = false;
                     }

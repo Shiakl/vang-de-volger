@@ -92,17 +92,17 @@ namespace Vang_de_volger
 
                     if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BOX)
                     {
-                        Box newBox = new Box(FieldComponent.UNITTYPE.BOX);
+                        Box newBox = new Box();
                         _playfield[tilecounter].MyUnit = newBox;
                     }
                     else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BLOCK)
                     {
-                        FieldComponent Block = new FieldComponent(FieldComponent.UNITTYPE.BLOCK);
+                        FieldComponent Block = new FieldComponent();
                         _playfield[tilecounter].MyUnit = Block;
                     }
                     else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.TILE)
                     {
-                        FieldComponent Tile = new FieldComponent(FieldComponent.UNITTYPE.TILE);
+                        FieldComponent Tile = new FieldComponent();
                         _playfield[tilecounter].MyUnit = Tile;
                     }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
@@ -111,11 +111,11 @@ namespace Vang_de_volger
                 }
             }
       
-            _player = new Hero(FieldComponent.UNITTYPE.HERO);
+            _player = new Hero();
             _playfield[0].MyUnit = _player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain(FieldComponent.UNITTYPE.VILLAIN);
+            _enemy = new Villain();
             _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
@@ -167,7 +167,7 @@ namespace Vang_de_volger
         {
             if (unit is Hero)
             {
-                Hero selectedHero = new Hero(FieldComponent.UNITTYPE.HERO);
+                Hero selectedHero;
                 selectedHero = unit as Hero;
                 selectedHero.move(FindHero(),direction);
 
