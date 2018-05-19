@@ -18,7 +18,7 @@ namespace Vang_de_volger
         public Villain _enemy;
         public Box[] _box;
 
-        private Unit.UNITTYPE[] _unityTypeArray = new Unit.UNITTYPE[NUM_OF_TILES];
+        private FieldComponent.UNITTYPE[] _unityTypeArray = new FieldComponent.UNITTYPE[NUM_OF_TILES];
         public Field()
         {
             _playfield = new Tile[NUM_OF_TILES];
@@ -38,24 +38,24 @@ namespace Vang_de_volger
             {
                 if (i <= (NUM_OF_TILES * wallRatio) && i > 0)
                 {
-                    _unityTypeArray[i] = Unit.UNITTYPE.BLOCK;
+                    _unityTypeArray[i] = FieldComponent.UNITTYPE.BLOCK;
                     i++;
                 }
                 else if (i <= (NUM_OF_TILES * wallRatio + _boxAmount) && i > (NUM_OF_TILES * wallRatio))
                 {
-                    _unityTypeArray[i] = Unit.UNITTYPE.BOX;
+                    _unityTypeArray[i] = FieldComponent.UNITTYPE.BOX;
                     i++;
                 }
                 else
                 {
-                    _unityTypeArray[i] = Unit.UNITTYPE.TILE;
+                    _unityTypeArray[i] = FieldComponent.UNITTYPE.TILE;
                     i++;
                 }
             }
 
             //Shuffle the tileArray
             Random rndShuffle = new Random();
-            Unit.UNITTYPE tempType;
+            FieldComponent.UNITTYPE tempType;
 
             //shuffle 100 times
             for (int shuffle = 0; shuffle < 100; shuffle++)
@@ -90,19 +90,19 @@ namespace Vang_de_volger
 
                     _playfield[tilecounter] = new Tile(tempPanel);
 
-                    if (_unityTypeArray[tilecounter] == Unit.UNITTYPE.BOX)
+                    if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BOX)
                     {
-                        Box newBox = new Box(Unit.UNITTYPE.BOX);
+                        Box newBox = new Box(FieldComponent.UNITTYPE.BOX);
                         _playfield[tilecounter].MyUnit = newBox;
                     }
-                    else if (_unityTypeArray[tilecounter] == Unit.UNITTYPE.BLOCK)
+                    else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BLOCK)
                     {
-                        Unit Block = new Unit(Unit.UNITTYPE.BLOCK);
+                        FieldComponent Block = new FieldComponent(FieldComponent.UNITTYPE.BLOCK);
                         _playfield[tilecounter].MyUnit = Block;
                     }
-                    else if (_unityTypeArray[tilecounter] == Unit.UNITTYPE.TILE)
+                    else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.TILE)
                     {
-                        Unit Tile = new Unit(Unit.UNITTYPE.TILE);
+                        FieldComponent Tile = new FieldComponent(FieldComponent.UNITTYPE.TILE);
                         _playfield[tilecounter].MyUnit = Tile;
                     }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
@@ -111,11 +111,11 @@ namespace Vang_de_volger
                 }
             }
       
-            _player = new Hero(Unit.UNITTYPE.HERO);
+            _player = new Hero(FieldComponent.UNITTYPE.HERO);
             _playfield[0].MyUnit = _player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain(Unit.UNITTYPE.VILLAIN);
+            _enemy = new Villain(FieldComponent.UNITTYPE.VILLAIN);
             _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
@@ -163,11 +163,11 @@ namespace Vang_de_volger
             return _playfield[searchCounter];
         }
 
-        public void Move_Unit(Unit unit, Tile.DIRECTIONS direction)
+        public void Move_Unit(FieldComponent unit, Tile.DIRECTIONS direction)
         {
             if (unit is Hero)
             {
-                Hero selectedHero = new Hero(Unit.UNITTYPE.HERO);
+                Hero selectedHero = new Hero(FieldComponent.UNITTYPE.HERO);
                 selectedHero = unit as Hero;
                 selectedHero.move(FindHero(),direction);
 

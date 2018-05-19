@@ -8,23 +8,13 @@ using System.Windows.Forms;
 
 namespace Vang_de_volger
 {
-    class Unit
+    class FieldComponent
     {
         public Image myImage;                     //Reserve the image of an Unit
-        public UNITTYPE MyType { get; set; }
 
-
-        public Unit(UNITTYPE setType)
+        public FieldComponent()
         {
-            MyType = setType;
-            if(MyType == UNITTYPE.BLOCK)
-            {
-                myImage = Image.FromFile(@"..\..\Resources\Block.jpg");
-            }
-            else if (MyType == UNITTYPE.TILE)
-            {
-                myImage = Image.FromFile(@"..\..\Resources\Tile.jpg");
-            }
+
         }
 
         public enum UNITTYPE
@@ -38,7 +28,7 @@ namespace Vang_de_volger
 
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
         {
-            Unit temp_Unit;
+            FieldComponent temp_Unit;
             temp_Unit = old_Tile.MyUnit;
             old_Tile.MyUnit = new_Tile.MyUnit;
             new_Tile.MyUnit = temp_Unit;

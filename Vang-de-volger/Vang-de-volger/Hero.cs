@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Vang_de_volger
 {
-    class Hero : Unit
+    class Hero : FieldComponent
     {
 
-        public Hero(UNITTYPE setType) : base(setType)
+        public Hero()
         {
-            MyType = setType;
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
         }
 

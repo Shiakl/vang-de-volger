@@ -10,7 +10,7 @@ namespace Vang_de_volger
 {
     class Tile
     {
-        public Unit MyUnit;
+        public FieldComponent MyUnit;
         public Panel MyPanel = new Panel();
         private PictureBox panelPb;
 
@@ -37,9 +37,9 @@ namespace Vang_de_volger
             {
                 if (myNeighbours[i] != null)
                 {
-                    if (MyUnit.MyType == Unit.UNITTYPE.BOX)
+                    if (MyUnit.MyType == FieldComponent.UNITTYPE.BOX)
                     {
-                        if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.TILE)
+                        if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.TILE)
                         {
                             moveArray[i] = true;
                         }
@@ -50,7 +50,7 @@ namespace Vang_de_volger
                     }
                     else
                     {
-                        if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.VILLAIN)
+                        if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.VILLAIN)
                         {
                             moveArray[i] = false;
                         }
@@ -71,7 +71,7 @@ namespace Vang_de_volger
             {
                 if (myNeighbours[i] != null)
                 {
-                    if (myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == Unit.UNITTYPE.BOX)
+                    if (myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BLOCK || myNeighbours[i].MyUnit.MyType == FieldComponent.UNITTYPE.BOX)
                     {
                         moveArrayVillain[i] = false;
                     }

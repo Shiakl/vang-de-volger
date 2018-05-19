@@ -7,12 +7,13 @@ using System.Drawing;
 
 namespace Vang_de_volger
 {
-    class Villain : FieldComponent
+    class Block :FieldComponent
     {
-        
-        public Villain()
+
+        public Block()
         {
-            myImage = Image.FromFile(@"..\..\Resources\Villain.png");
+            myImage = Image.FromFile(@"..\..\Resources\Block.jpg");
         }
+
     }
 }
