@@ -97,13 +97,13 @@ namespace Vang_de_volger
                     }
                     else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BLOCK)
                     {
-                        FieldComponent Block = new FieldComponent();
+                        Block Block = new Block();
                         _playfield[tilecounter].MyUnit = Block;
                     }
                     else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.TILE)
                     {
-                        FieldComponent Tile = new FieldComponent();
-                        _playfield[tilecounter].MyUnit = Tile;
+                        Ground EmptyTile = new Ground();
+                        _playfield[tilecounter].MyUnit = EmptyTile;
                     }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
                     _playfield[tilecounter].Redraw();
@@ -156,7 +156,7 @@ namespace Vang_de_volger
         public Tile FindVillain()
         {
             int searchCounter = 0;
-            while (!(_playfield[searchCounter].MyUnit is Hero))
+            while (!(_playfield[searchCounter].MyUnit is Villain))
             {
                 searchCounter++;
             }

@@ -15,38 +15,58 @@ namespace Vang_de_volger
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
         }
 
+
         public void move(Tile myTile,Tile.DIRECTIONS direction)
         {
             myTile.Possible_moves();
 
             if (myTile.myNeighbours[(int)direction] != null)
             {
-                /*
+                //Box Push Start here
                 if (myTile.myNeighbours[(int)direction].MyUnit is Box)
                 {
                     myTile.myNeighbours[(int)direction].Possible_moves();
-                    if (Check_Box_Row(heroTile, hero_Direction) == true)
+                    if (Check_Box_Row(myTile, (int)direction) == true)
                     {
-                        _chosen_Direction = heroTile.all_Directions[hero_Direction];
-                        for (int b = _boxes_to_push.Count() - 1; b >= 0; b--)
+                        for (int b = _tiles_to_swap.Count() - 1; b >= 0; b--)
                         {
-                            Move_Unit(_boxes_to_push[b], _chosen_Direction, _tiles_to_swap[b]);
+                            Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
+                            _tiles_to_swap[b].Redraw();
+                            _tiles_to_swap[b].myNeighbours[(int)direction].Redraw();
                         }
-
-                        Move_Unit(_player, _chosen_Direction, heroTile);
+                        Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                     }
                 }
-                */
-                if (myTile.moveArray[(int)direction] == true)
+                //Box push ends here
+                else if (myTile.moveArray[(int)direction] == true)
                 {
                     //executemovement
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
-
-                    //Redraw tile
-                    myTile.Redraw();
-                    myTile.myNeighbours[(int)direction].Redraw();
                 }
             }
+            _tiles_to_swap.Clear();
+        }
+
+        private List<Tile> _tiles_to_swap = new List<Tile>(); /// tiles_to_swap is used to swap the unit on the tile in the direction with the current tile
+        public bool Check_Box_Row(Tile heroTile, int direction)
+        {
+            if (heroTile.myNeighbours[direction] != null)
+            {
+                if (heroTile.myNeighbours[direction].MyUnit is Box)
+                {
+                    _tiles_to_swap.Add(heroTile.myNeighbours[direction]);
+                    return Check_Box_Row(heroTile.myNeighbours[direction], direction);
+                }
+                else if (heroTile.myNeighbours[direction].MyUnit is Ground)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else return false;
         }
     }
 }

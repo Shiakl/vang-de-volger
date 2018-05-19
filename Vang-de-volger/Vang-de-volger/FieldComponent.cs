@@ -10,7 +10,7 @@ namespace Vang_de_volger
 {
     class FieldComponent
     {
-        public Image myImage;                     //Reserve the image of an Unit
+        public Image myImage; 
 
         public FieldComponent()
         {
@@ -32,6 +32,8 @@ namespace Vang_de_volger
             temp_Unit = old_Tile.MyUnit;
             old_Tile.MyUnit = new_Tile.MyUnit;
             new_Tile.MyUnit = temp_Unit;
+            old_Tile.Redraw();
+            new_Tile.Redraw();
         }
 
     }
