@@ -18,10 +18,19 @@ namespace Vang_de_volger
         public Villain _enemy;
         public Box[] _box;
 
-        private FieldComponent.UNITTYPE[] _unityTypeArray = new FieldComponent.UNITTYPE[NUM_OF_TILES];
+        private UNITTYPE[] _unityTypeArray = new UNITTYPE[NUM_OF_TILES];
         public Field()
         {
             _playfield = new Tile[NUM_OF_TILES];
+        }
+
+        private enum UNITTYPE
+        {
+            BLOCK,
+            TILE,
+            BOX,
+            HERO,
+            VILLAIN
         }
 
         //Assign Type values to tiles in a Tile class array depending on playfield size
@@ -38,24 +47,24 @@ namespace Vang_de_volger
             {
                 if (i <= (NUM_OF_TILES * wallRatio) && i > 0)
                 {
-                    _unityTypeArray[i] = FieldComponent.UNITTYPE.BLOCK;
+                    _unityTypeArray[i] = UNITTYPE.BLOCK;
                     i++;
                 }
                 else if (i <= (NUM_OF_TILES * wallRatio + _boxAmount) && i > (NUM_OF_TILES * wallRatio))
                 {
-                    _unityTypeArray[i] = FieldComponent.UNITTYPE.BOX;
+                    _unityTypeArray[i] = UNITTYPE.BOX;
                     i++;
                 }
                 else
                 {
-                    _unityTypeArray[i] = FieldComponent.UNITTYPE.TILE;
+                    _unityTypeArray[i] = UNITTYPE.TILE;
                     i++;
                 }
             }
 
             //Shuffle the tileArray
             Random rndShuffle = new Random();
-            FieldComponent.UNITTYPE tempType;
+            UNITTYPE tempType;
 
             //shuffle 100 times
             for (int shuffle = 0; shuffle < 100; shuffle++)
@@ -90,17 +99,17 @@ namespace Vang_de_volger
 
                     _playfield[tilecounter] = new Tile(tempPanel);
 
-                    if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BOX)
+                    if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
                     {
                         Box newBox = new Box();
                         _playfield[tilecounter].MyUnit = newBox;
                     }
-                    else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.BLOCK)
+                    else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
                     {
                         Block Block = new Block();
                         _playfield[tilecounter].MyUnit = Block;
                     }
-                    else if (_unityTypeArray[tilecounter] == FieldComponent.UNITTYPE.TILE)
+                    else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
                     {
                         Ground EmptyTile = new Ground();
                         _playfield[tilecounter].MyUnit = EmptyTile;

@@ -9,7 +9,6 @@ namespace Vang_de_volger
 {
     class Hero : FieldComponent
     {
-
         public Hero()
         {
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
@@ -31,8 +30,6 @@ namespace Vang_de_volger
                         for (int b = _tiles_to_swap.Count() - 1; b >= 0; b--)
                         {
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
-                            _tiles_to_swap[b].Redraw();
-                            _tiles_to_swap[b].myNeighbours[(int)direction].Redraw();
                         }
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                     }

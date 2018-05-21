@@ -17,15 +17,6 @@ namespace Vang_de_volger
 
         }
 
-        public enum UNITTYPE
-        {
-            BLOCK,
-            TILE,
-            BOX,
-            HERO,
-            VILLAIN
-        }
-
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
         {
             FieldComponent temp_Unit;
@@ -35,6 +26,5 @@ namespace Vang_de_volger
             old_Tile.Redraw();
             new_Tile.Redraw();
         }
-
     }
 }
