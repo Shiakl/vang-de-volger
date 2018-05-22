@@ -21,7 +21,7 @@ namespace Vang_de_volger
         private UNITTYPE[] _unityTypeArray = new UNITTYPE[NUM_OF_TILES];
         public Field()
         {
-            _playfield = new Tile[NUM_OF_TILES];
+            _playfield = new Tile[NUM_OF_TILES];            
         }
 
         private enum UNITTYPE
@@ -151,6 +151,41 @@ namespace Vang_de_volger
                 _playfield[tc].AddNeighbours();
             }
         }//CreateField
+
+        public void Reload_Units()
+        {
+            _Create_UnitTypeArray();
+            int tilecounter = 0;
+            for (int tc = 0; tc < NUM_OF_TILES; tc++)
+            {
+                if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
+                {
+                    Box newBox = new Box();
+                    _playfield[tilecounter].MyUnit = newBox;
+                }
+                else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
+                {
+                    Block Block = new Block();
+                    _playfield[tilecounter].MyUnit = Block;
+                }
+                else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
+                {
+                    Ground EmptyTile = new Ground();
+                    _playfield[tilecounter].MyUnit = EmptyTile;
+                }
+                _playfield[tilecounter].Redraw();
+                tilecounter++;
+            }
+
+            _player = new Hero();
+            _playfield[0].MyUnit = _player;
+            _playfield[0].Redraw();
+
+            _enemy = new Villain();
+            _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
+            _playfield[NUM_OF_TILES - 1].Redraw();
+
+        }
 
         public Tile FindHero()
         {

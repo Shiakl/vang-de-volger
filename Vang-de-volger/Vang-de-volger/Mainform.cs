@@ -12,7 +12,7 @@ namespace Vang_de_volger
 {
     public partial class MainForm : Form
     {
-        private Field _playZone = new Field();
+        private Field _playZone;
         private int _villainMoveInterval = 500; //interval at which villain moves in milliseconds
         private Timer _timerVillainMove = new Timer(); //Create a timer to make the villain move
         public const int x_gridSize = 15;  //Amount of tiles in X-direction on the field
@@ -47,6 +47,7 @@ namespace Vang_de_volger
         public void GenerateField()
         {
             this.Invalidate();
+            _playZone = new Field();
             _playZone.CreateField(this);
             this.Refresh();
         }
@@ -79,12 +80,28 @@ namespace Vang_de_volger
 
         private void pause_Label_Click(object sender, EventArgs e)
         {
-
+            if (_paused == false)
+            {
+                _paused = true;
+                _timerVillainMove.Stop();
+                endPb.Visible = true;
+                endPb.Image = _pauseImage;
+            }
+            else if (_paused == true)
+            {
+                _paused = false;
+                endPb.Visible = false;
+                _timerVillainMove.Start();
+            }
         }
 
         private void restart_Button_Click(object sender, EventArgs e)
         {
-
+            _timerVillainMove.Stop();
+            _playZone.Reload_Units();
+            _timerVillainMove.Start();
+            endPb.Visible = false;
+            _paused = false;
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)

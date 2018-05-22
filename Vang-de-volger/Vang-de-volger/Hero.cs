@@ -46,7 +46,6 @@ namespace Vang_de_volger
                         {
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
                         }
-                        //SetFacing(direction);
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                     }
                 }
@@ -54,7 +53,6 @@ namespace Vang_de_volger
                 else if (myTile.moveArray[(int)direction] == true)
                 {
                     //executemovement
-                    //SetFacing(direction);
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                 }
             }
