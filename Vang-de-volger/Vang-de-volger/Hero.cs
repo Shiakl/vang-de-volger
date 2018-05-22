@@ -9,15 +9,30 @@ namespace Vang_de_volger
 {
     class Hero : FieldComponent
     {
+        private Tile.DIRECTIONS _facing;
+        private Image[] _heroSprites = new Image[4];
         public Hero()
         {
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
+            _facing = Tile.DIRECTIONS.BOTTOM;
+
+            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HeroLeft.png");
+            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HeroRight.png");
+            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HeroUp.png");
+            _heroSprites[3] = Image.FromFile(@"..\..\Resources\Hero.png");
         }
 
+        public void SetFacing(Tile.DIRECTIONS LastFace)
+        {
+            _facing = LastFace;
+            myImage = _heroSprites[(int)LastFace];
+        }
 
         public void move(Tile myTile,Tile.DIRECTIONS direction)
         {
             myTile.Possible_moves();
+            SetFacing(direction);
+            myTile.Redraw();
 
             if (myTile.myNeighbours[(int)direction] != null)
             {
@@ -31,6 +46,7 @@ namespace Vang_de_volger
                         {
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
                         }
+                        //SetFacing(direction);
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                     }
                 }
@@ -38,6 +54,7 @@ namespace Vang_de_volger
                 else if (myTile.moveArray[(int)direction] == true)
                 {
                     //executemovement
+                    //SetFacing(direction);
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
                 }
             }

@@ -103,6 +103,9 @@
     <None Include="Resources\Villain.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\HeroUp.png" />
+    <Content Include="Resources\HeroLeft.png" />
+    <Content Include="Resources\HeroRight.png" />
     <Content Include="Resources\Lose.png" />
     <Content Include="Resources\Paused.png" />
     <Content Include="Resources\Victory.png" />
