@@ -90,10 +90,10 @@ namespace Vang_de_volger
         public Tile[] myNeighbours = new Tile[4];
         public void AddNeighbours()
         {
-            myNeighbours[0] = neighbourLeft;
-            myNeighbours[1] = neighbourRight;
-            myNeighbours[2] = neighbourTop;
-            myNeighbours[3] = neighbourBottom;
+            myNeighbours[(int)DIRECTIONS.LEFT] = neighbourLeft;
+            myNeighbours[(int)DIRECTIONS.RIGHT] = neighbourRight;
+            myNeighbours[(int)DIRECTIONS.TOP] = neighbourTop;
+            myNeighbours[(int)DIRECTIONS.BOTTOM] = neighbourBottom;
         }
 
         public enum DIRECTIONS

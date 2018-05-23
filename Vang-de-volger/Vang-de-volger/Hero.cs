@@ -13,13 +13,13 @@ namespace Vang_de_volger
         private Image[] _heroSprites = new Image[4];
         public Hero()
         {
-            myImage = Image.FromFile(@"..\..\Resources\HeroSprites\Hero.png");
+            myImage = Image.FromFile(@"..\..\Resources\HSprites\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;
 
-            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroLeft.png");
-            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroRight.png");
-            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroUp.png");
-            _heroSprites[3] = Image.FromFile(@"..\..\Resources\HeroSprites\Hero.png");
+            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HSprites\HeroLeft.png");
+            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HSprites\HeroRight.png");
+            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HSprites\HeroUp.png");
+            _heroSprites[3] = Image.FromFile(@"..\..\Resources\HSprites\Hero.png");
         }
 
         public void SetFacing(Tile.DIRECTIONS LastFace)
