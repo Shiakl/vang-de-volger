@@ -20,10 +20,10 @@ namespace Vang_de_volger
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;
 
-            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HeroLeft.png");
-            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HeroRight.png");
-            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HeroUp.png");
-            _heroSprites[3] = Image.FromFile(@"..\..\Resources\Hero.png");
+            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroLeft.png");
+            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroRight.png");
+            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroUp.png");
+            _heroSprites[3] = Image.FromFile(@"..\..\Resources\HeroSprites\Hero.png");
         }
 
         public void SetFacing(Tile.DIRECTIONS LastFace)
