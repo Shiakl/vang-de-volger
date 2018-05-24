@@ -56,7 +56,7 @@ namespace Vang_de_volger
         public void TimerVillainMove_Tick(object sender, EventArgs e)
         {
             //Check to see if the villain has any moves left through a bool in the Field class.
-            if (_playZone._enemy.villain_Lose(_playZone.FindVillain()) == true)
+            if (_playZone._enemy.villain_Lose(_playZone._enemy.myTile) == true)
             {
                 _timerVillainMove.Stop();
                 endPb.Visible = true;
@@ -64,7 +64,7 @@ namespace Vang_de_volger
                 _paused = true;
             }
             //Check to see if the villain has succesfully caught the player through a bool in the Field class.
-            else if (_playZone._enemy.Catch_Hero(_playZone.FindVillain()) == true)
+            else if (_playZone._enemy.Catch_Hero(_playZone._enemy.myTile) == true)
             {
                 _timerVillainMove.Stop();
                 endPb.Visible = true;
@@ -73,7 +73,7 @@ namespace Vang_de_volger
             }
             else
             {
-                _playZone._enemy.Villain_random_move(_playZone.FindVillain());
+                _playZone._enemy.Villain_random_move(_playZone._enemy.myTile);
                 this.Refresh();
             }
         }
@@ -110,19 +110,19 @@ namespace Vang_de_volger
             {
                 if (e.KeyCode == Keys.Left)
                 {
-                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.LEFT);
+                    _playZone._player.move(_playZone._player.heroTile, Tile.DIRECTIONS.LEFT);
                 }
                 else if (e.KeyCode == Keys.Right)
                 {
-                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.RIGHT);
+                    _playZone._player.move(_playZone._player.heroTile, Tile.DIRECTIONS.RIGHT);
                 }
                 else if (e.KeyCode == Keys.Up)
                 {
-                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.TOP);
+                    _playZone._player.move(_playZone._player.heroTile, Tile.DIRECTIONS.TOP);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    _playZone._player.move(_playZone.FindHero(), Tile.DIRECTIONS.BOTTOM);
+                    _playZone._player.move(_playZone._player.heroTile, Tile.DIRECTIONS.BOTTOM);
                 }
             }
         }

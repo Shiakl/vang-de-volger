@@ -12,7 +12,7 @@ namespace Vang_de_volger
 
         public Ground()
         {
-            myImage = Image.FromFile(@"..\..\Resources\Tile.jpg");
+            myImage = null;
         }
 
     }
