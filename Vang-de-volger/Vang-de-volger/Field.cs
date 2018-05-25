@@ -24,7 +24,6 @@ namespace Vang_de_volger
             _playfield = new Tile[NUM_OF_TILES];            
         }
 
-        //not scallable
         private enum UNITTYPE
         {
             BLOCK,
@@ -121,11 +120,11 @@ namespace Vang_de_volger
                 }
             }
       
-            _player = new Hero();
+            _player = new Hero(_playfield[0]);
             _playfield[0].MyUnit = _player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain();
+            _enemy = new Villain(_playfield[NUM_OF_TILES-1]);
             _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
@@ -178,18 +177,17 @@ namespace Vang_de_volger
                 tilecounter++;
             }
 
-            _player = new Hero();
+            _player = new Hero(_playfield[0]);
             _playfield[0].MyUnit = _player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain();
+            _enemy = new Villain(_playfield[NUM_OF_TILES-1]);
             _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
         }
 
-
-        //property*
+        /*
         public Tile FindHero()
         {
             int searchCounter = 0;
@@ -209,6 +207,7 @@ namespace Vang_de_volger
             }
             return _playfield[searchCounter];
         }
+        */
 
     }//Field
 

@@ -9,9 +9,11 @@ namespace Vang_de_volger
 {
     class Villain : FieldComponent
     {
-        
-        public Villain()
+        public Tile myTile;
+
+        public Villain(Tile spawnTile)
         {
+            myTile = spawnTile;
             myImage = Image.FromFile(@"..\..\Resources\Villain.png");
         }
 
@@ -78,6 +80,7 @@ namespace Vang_de_volger
                     {
                         _hero_Search = true;
                         Swap_MyUnit(villainTile, villainTile.myNeighbours[scan]);
+                        myTile = villainTile.myNeighbours[(int)_chosen_Random_Direction];
                     }
                 }
             }
@@ -96,6 +99,7 @@ namespace Vang_de_volger
                 int villain_Direction = rndDirection.Next(0, arraycount);
                 _chosen_Random_Direction = _possible_Directions[villain_Direction];
                 Swap_MyUnit(villainTile, villainTile.myNeighbours[(int)_chosen_Random_Direction]);
+                myTile = villainTile.myNeighbours[(int)_chosen_Random_Direction];
             }
         }
 

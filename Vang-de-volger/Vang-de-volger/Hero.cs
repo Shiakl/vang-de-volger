@@ -9,17 +9,21 @@ namespace Vang_de_volger
 {
     class Hero : FieldComponent
     {
+        public Tile heroTile;
         private Tile.DIRECTIONS _facing;
         private Image[] _heroSprites = new Image[4];
-        public Hero()
+
+
+        public Hero(Tile spawnTile)
         {
-            myImage = Image.FromFile(@"..\..\Resources\HSprites\Hero.png");
+            heroTile = spawnTile;
+            myImage = Image.FromFile(@"..\..\Resources\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;
 
-            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HSprites\HeroLeft.png");
-            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HSprites\HeroRight.png");
-            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HSprites\HeroUp.png");
-            _heroSprites[3] = Image.FromFile(@"..\..\Resources\HSprites\Hero.png");
+            _heroSprites[0] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroLeft.png");
+            _heroSprites[1] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroRight.png");
+            _heroSprites[2] = Image.FromFile(@"..\..\Resources\HeroSprites\HeroUp.png");
+            _heroSprites[3] = Image.FromFile(@"..\..\Resources\HeroSprites\Hero.png");
         }
 
         public void SetFacing(Tile.DIRECTIONS LastFace)
@@ -47,6 +51,7 @@ namespace Vang_de_volger
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
                         }
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
+                        heroTile = myTile.myNeighbours[(int)direction];
                     }
                 }
                 //Box push ends here
@@ -54,6 +59,7 @@ namespace Vang_de_volger
                 {
                     //executemovement
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
+                    heroTile = myTile.myNeighbours[(int)direction];
                 }
             }
             _tiles_to_swap.Clear();
