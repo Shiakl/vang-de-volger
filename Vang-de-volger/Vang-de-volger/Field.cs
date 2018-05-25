@@ -14,11 +14,13 @@ namespace Vang_de_volger
         const int NUM_OF_TILES = MainForm.x_gridSize * MainForm.y_gridSize; //Number of tiles on the field
         private Tile[] _playfield; //Tile class array
 
-        public Hero _player;
-        public Villain _enemy;
-        public Box[] _box;
+        public Hero player;
+        public Villain enemy;
+
 
         private UNITTYPE[] _unityTypeArray = new UNITTYPE[NUM_OF_TILES];
+        private FieldComponent[] _fieldUnits = new FieldComponent[NUM_OF_TILES];
+
         public Field()
         {
             _playfield = new Tile[NUM_OF_TILES];            
@@ -120,12 +122,12 @@ namespace Vang_de_volger
                 }
             }
       
-            _player = new Hero(_playfield[0],false, true, false);
-            _playfield[0].MyUnit = _player;
+            player = new Hero(_playfield[0],false, true, false);
+            _playfield[0].MyUnit = player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain(_playfield[NUM_OF_TILES-1], false, false, false);
-            _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
+            enemy = new Villain(_playfield[NUM_OF_TILES-1], false, false, false);
+            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
             //Add tile neighbours
@@ -177,12 +179,12 @@ namespace Vang_de_volger
                 tilecounter++;
             }
 
-            _player = new Hero(_playfield[0], false, true, false);
-            _playfield[0].MyUnit = _player;
+            player = new Hero(_playfield[0], false, true, false);
+            _playfield[0].MyUnit = player;
             _playfield[0].Redraw();
 
-            _enemy = new Villain(_playfield[NUM_OF_TILES - 1], false, false, false);
-            _playfield[NUM_OF_TILES - 1].MyUnit = _enemy;
+            enemy = new Villain(_playfield[NUM_OF_TILES - 1], false, false, false);
+            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
         }
