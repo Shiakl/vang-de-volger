@@ -101,17 +101,17 @@ namespace Vang_de_volger
 
                     if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
                     {
-                        Box newBox = new Box(true, false,true );
+                        Box newBox = new Box(true, false, true);
                         _playfield[tilecounter].MyUnit = newBox;
                     }
                     else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
                     {
-                        Block Block = new Block(false,true,false);
+                        Block Block = new Block(false, false, false);
                         _playfield[tilecounter].MyUnit = Block;
                     }
                     else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
                     {
-                        Ground EmptyTile = new Ground(true,true,false);
+                        Ground EmptyTile = new Ground(true, true, false);
                         _playfield[tilecounter].MyUnit = EmptyTile;
                     }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
@@ -165,7 +165,7 @@ namespace Vang_de_volger
                 }
                 else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
                 {
-                    Block Block = new Block(true, true, false);
+                    Block Block = new Block(false, false, false);
                     _playfield[tilecounter].MyUnit = Block;
                 }
                 else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)

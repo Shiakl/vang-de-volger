@@ -46,7 +46,7 @@ namespace Vang_de_volger
             if (myTile.myNeighbours[(int)direction] != null)
             {
                 //Box Push Start here
-                if (myTile.myNeighbours[(int)direction].MyUnit is Box)
+                if (myTile.myNeighbours[(int)direction].MyUnit.pushable == true)
                 {
                     //myTile.myNeighbours[(int)direction].Possible_moves();
                     if (Check_Box_Row(myTile, (int)direction) == true)

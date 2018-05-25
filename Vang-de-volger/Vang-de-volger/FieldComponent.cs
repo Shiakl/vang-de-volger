@@ -33,5 +33,9 @@ namespace Vang_de_volger
             old_Tile.Redraw();
             new_Tile.Redraw();
         }
+
+        //Checks allowed in parent class for different implementations of the children.
+        //Twee verschillende move functies
+
     }
 }

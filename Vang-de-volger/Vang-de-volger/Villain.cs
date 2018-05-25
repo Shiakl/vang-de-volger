@@ -35,7 +35,6 @@ namespace Vang_de_volger
                     {
                         _move_count++;
                     }
-
                 }
             }
             if (_move_count == 4)
@@ -97,12 +96,11 @@ namespace Vang_de_volger
                 {
                     if(villainTile.myNeighbours[a] != null)
                     {
-                    if (villainTile.myNeighbours[a].MyUnit.allow_villain_move == true)
-                    {
-                        _possible_Directions[arraycount] = (Tile.DIRECTIONS)a;
-                        arraycount++;
-                    }
-
+                        if (villainTile.myNeighbours[a].MyUnit.allow_villain_move == true)
+                        {
+                            _possible_Directions[arraycount] = (Tile.DIRECTIONS)a;
+                            arraycount++;
+                        }
                     }
                 }
 
@@ -113,7 +111,5 @@ namespace Vang_de_volger
                 myTile = villainTile.myNeighbours[(int)_chosen_Random_Direction];
             }
         }
-
-
     }
 }
