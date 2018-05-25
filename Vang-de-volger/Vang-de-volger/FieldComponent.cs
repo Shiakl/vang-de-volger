@@ -36,6 +36,7 @@ namespace Vang_de_volger
 
         //Checks allowed in parent class for different implementations of the children.
         //Twee verschillende move functies
+        //decorator pattern, strategy pattern
 
     }
 }
