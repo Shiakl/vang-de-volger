@@ -7,11 +7,11 @@ using System.Drawing;
 
 namespace Vang_de_volger
 {
-    class Villain : FieldComponent
+    class Villain : Hero
     {
-        public Tile myTile;
 
-        public Villain(Tile spawnTile)
+
+        public Villain(Tile spawnTile) :base(spawnTile)
         {
             myTile = spawnTile;
             allow_move = false;
@@ -68,36 +68,36 @@ namespace Vang_de_volger
             return false;
         }
 
-        //VILLAIN FUNCTION
-        /// <summary>
-        ///     Method for randomly moving the Villain.   
-        /// </summary>
-        private Tile.DIRECTIONS _chosen_Random_Direction; //For the Villain
-        private Tile.DIRECTIONS[] _possible_Directions = new Tile.DIRECTIONS[4];
-        public void Villain_random_move(Tile villainTile)
+
+        public override void move(Tile thisTile, Tile.DIRECTIONS direction)
         {
-            //villainTile.Possible_moves_villain();
+            Swap_MyUnit(thisTile, thisTile.myNeighbours[(int)direction]);
+            myTile = thisTile.myNeighbours[(int)direction];
+        }
+
+        private Tile.DIRECTIONS[] _possible_Directions = new Tile.DIRECTIONS[4];
+        public Tile.DIRECTIONS Random_Direction()
+        {
+            Tile.DIRECTIONS _chosen_Random_Direction;
+
             int move_Numbers = 0;
             int arraycount = 0;
 
-                for (int a = 0; a < villainTile.myNeighbours.Length; a++)
+            for (int a = 0; a < myTile.myNeighbours.Length; a++)
+            {
+                if (myTile.myNeighbours[a] != null)
                 {
-                    if(villainTile.myNeighbours[a] != null)
+                    if (myTile.myNeighbours[a].MyUnit.allow_move == true && myTile.myNeighbours[a].MyUnit.pushable == false)
                     {
-                        if (villainTile.myNeighbours[a].MyUnit.allow_move == true && villainTile.myNeighbours[a].MyUnit.pushable == false)
-                        {
-                            _possible_Directions[arraycount] = (Tile.DIRECTIONS)a;
-                            arraycount++;
-                        }
+                        _possible_Directions[arraycount] = (Tile.DIRECTIONS)a;
+                        arraycount++;
                     }
                 }
-
-                Random rndDirection = new Random();
-                int villain_Direction = rndDirection.Next(0, arraycount);
-                _chosen_Random_Direction = _possible_Directions[villain_Direction];
-                Swap_MyUnit(villainTile, villainTile.myNeighbours[(int)_chosen_Random_Direction]);
-                myTile = villainTile.myNeighbours[(int)_chosen_Random_Direction];
-            
+            }
+            Random rndDirection = new Random();
+            int villain_Direction = rndDirection.Next(0, arraycount);
+            _chosen_Random_Direction = _possible_Directions[villain_Direction];
+            return _chosen_Random_Direction;
         }
     }
 }

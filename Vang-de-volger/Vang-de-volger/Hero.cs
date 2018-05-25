@@ -9,14 +9,14 @@ namespace Vang_de_volger
 {
     class Hero : FieldComponent
     {
-        public Tile heroTile;
+        public Tile myTile;
         private Tile.DIRECTIONS _facing;
         private Image[] _heroSprites = new Image[4];
 
 
         public Hero(Tile spawnTile)
         {
-            heroTile = spawnTile;
+            myTile = spawnTile;
 
             allow_move = false;
             pushable = false;
@@ -36,7 +36,7 @@ namespace Vang_de_volger
             myImage = _heroSprites[(int)LastFace];
         }
 
-        public void move(Tile myTile,Tile.DIRECTIONS direction)
+        public virtual void move(Tile thisTile,Tile.DIRECTIONS direction)
         {
             //myTile.Possible_moves();
             SetFacing(direction);
@@ -55,7 +55,7 @@ namespace Vang_de_volger
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
                         }
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
-                        heroTile = myTile.myNeighbours[(int)direction];
+                        this.myTile = myTile.myNeighbours[(int)direction];
                     }
                 }
                 //Box push ends here
@@ -63,7 +63,7 @@ namespace Vang_de_volger
                 {
                     //executemovement
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
-                    heroTile = myTile.myNeighbours[(int)direction];
+                    this.myTile = myTile.myNeighbours[(int)direction];
                 }
             }
             _tiles_to_swap.Clear();

@@ -73,7 +73,7 @@ namespace Vang_de_volger
             }
             else
             {
-                _playZone.enemy.Villain_random_move(_playZone.enemy.myTile);
+                _playZone.enemy.move(_playZone.enemy.myTile, _playZone.enemy.Random_Direction());
             }
         }
 
@@ -109,19 +109,19 @@ namespace Vang_de_volger
             {
                 if (e.KeyCode == Keys.Left)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.LEFT);
+                    _playZone.player.move(_playZone.player.myTile, Tile.DIRECTIONS.LEFT);
                 }
                 else if (e.KeyCode == Keys.Right)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.RIGHT);
+                    _playZone.player.move(_playZone.player.myTile, Tile.DIRECTIONS.RIGHT);
                 }
                 else if (e.KeyCode == Keys.Up)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.TOP);
+                    _playZone.player.move(_playZone.player.myTile, Tile.DIRECTIONS.TOP);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.BOTTOM);
+                    _playZone.player.move(_playZone.player.myTile, Tile.DIRECTIONS.BOTTOM);
                 }
             }
         }
