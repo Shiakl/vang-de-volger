@@ -187,29 +187,7 @@ namespace Vang_de_volger
             _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
-        }
-
-        /*
-        public Tile FindHero()
-        {
-            int searchCounter = 0;
-            while(!(_playfield[searchCounter].MyUnit is Hero))
-            {
-                searchCounter++;
-            }
-            return _playfield[searchCounter];
-        }
-
-        public Tile FindVillain()
-        {
-            int searchCounter = 0;
-            while (!(_playfield[searchCounter].MyUnit is Villain))
-            {
-                searchCounter++;
-            }
-            return _playfield[searchCounter];
-        }
-        */
+        }//Reload Units
 
     }//Field
 

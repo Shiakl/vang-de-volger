@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Vang_de_volger
 {
-    class FieldComponent
+    abstract class FieldComponent
     {
         public Image myImage;
 
@@ -32,10 +32,5 @@ namespace Vang_de_volger
             old_Tile.Redraw();
             new_Tile.Redraw();
         }
-
-        //Checks allowed in parent class for different implementations of the children.
-        //Twee verschillende move functies
-        //decorator pattern, strategy pattern
-
     }
 }

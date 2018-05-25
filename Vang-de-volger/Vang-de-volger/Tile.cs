@@ -14,7 +14,7 @@ namespace Vang_de_volger
         public Panel MyPanel = new Panel();
         private PictureBox panelPb;
 
-        public Tile( Panel gridPanel)
+        public Tile(Panel gridPanel)
         {
             MyPanel = gridPanel;
             MyPanel.BackgroundImage = Properties.Resources.Tile;

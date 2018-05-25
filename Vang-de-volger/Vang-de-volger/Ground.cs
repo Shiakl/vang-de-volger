@@ -16,6 +16,5 @@ namespace Vang_de_volger
             allow_move = true;
             pushable = false;
         }
-
     }
 }

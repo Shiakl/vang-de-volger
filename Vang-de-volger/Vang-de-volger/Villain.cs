@@ -9,8 +9,6 @@ namespace Vang_de_volger
 {
     class Villain : Hero
     {
-
-
         public Villain(Tile spawnTile) :base(spawnTile)
         {
             myTile = spawnTile;
@@ -67,7 +65,6 @@ namespace Vang_de_volger
             }
             return false;
         }
-
 
         public override void move(Tile thisTile, Tile.DIRECTIONS direction)
         {
