@@ -21,6 +21,11 @@ namespace Vang_de_volger
             pushable = false;
         }
 
+        /// <summary>
+        /// Method is used to swap the MyUnit of a Tile class object with another.
+        /// </summary>
+        /// <param name="old_Tile">The Tile the fieldcomponent is located</param>
+        /// <param name="new_Tile">The destination Tile of the fieldcomponent</param>
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
         {
             FieldComponent temp_Unit;

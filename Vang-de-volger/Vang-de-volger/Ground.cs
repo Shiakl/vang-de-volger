@@ -9,7 +9,6 @@ namespace Vang_de_volger
 {
     class Ground : FieldComponent
     {
-
         public Ground()
         {
             myImage = null;

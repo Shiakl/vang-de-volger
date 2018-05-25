@@ -17,40 +17,41 @@ namespace Vang_de_volger
             myImage = Image.FromFile(@"..\..\Resources\Villain.png");
         }
 
-        //VILLAIN FUNCTION
-        //Count the not-possible moves for the villain, if the move_count is 4 the villain has no possible moves and loses
-        private int _move_count;
+        /// <summary>
+        /// Count the not-possible moves for the villain, if the blocked_move_count is equal to the amount of neighbours the villain has the villain has no more possible moves and it returns true.
+        /// </summary>
+        /// <param name="myTile">The tile the villain class object is located on.</param>
+        /// <returns>bool</returns>
         public bool villain_Lose(Tile myTile)
         {
-            //myTile.Possible_moves_villain();
-            _move_count = 0;
+        int blocked_move_count;
+            blocked_move_count = 0;
             for (int vd = 0; vd < myTile.myNeighbours.Length; vd++)
             {
                 if(myTile.myNeighbours[vd] != null)
                 {
                     if (myTile.myNeighbours[vd].MyUnit.pushable == true || myTile.myNeighbours[vd].MyUnit.allow_move == false)
                     {
-                        _move_count++;
+                        blocked_move_count++;
                     }
                 }
                 else
                 {
-                    _move_count++;
+                    blocked_move_count++;
                 }
             }
-            if (_move_count == myTile.myNeighbours.Length)
+            if (blocked_move_count == myTile.myNeighbours.Length)
             {
                 return true;
             }
             return false;
         }
 
-        //VILLAIN FUNCTION
         /// <summary>
-        /// Function added to enable Villain to catch the Hero
+        /// Function added to enable the Villain to catch the Hero
         /// </summary>
         /// <param name="myTile"> The tile the villain is on.</param>
-        /// <returns></returns>
+        /// <returns>bool</returns>
         public bool Catch_Hero(Tile myTile)
         {
             for (int scan = 0; scan < myTile.myNeighbours.Length; scan++)
@@ -66,10 +67,15 @@ namespace Vang_de_volger
             return false;
         }
 
-        public override void move(Tile thisTile, Tile.DIRECTIONS direction)
+        /// <summary>
+        /// Move handler of the villain.
+        /// </summary>
+        /// <param name="thisTile">The tile the villain is on</param>
+        /// <param name="direction"></param>
+        public override void move(Tile.DIRECTIONS direction)
         {
-            Swap_MyUnit(thisTile, thisTile.myNeighbours[(int)direction]);
-            myTile = thisTile.myNeighbours[(int)direction];
+            Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
+            myTile = myTile.myNeighbours[(int)direction];
         }
 
         private Tile.DIRECTIONS[] _possible_Directions = new Tile.DIRECTIONS[4];

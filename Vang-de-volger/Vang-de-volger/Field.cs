@@ -17,19 +17,29 @@ namespace Vang_de_volger
         public Hero player;
         public Villain enemy;
 
-        private FieldComponent[] _fieldUnits = new FieldComponent[NUM_OF_TILES];
+        private const double _boxRatio = 0.2; //Determine the ratio of boxes:tiles
+        const double blockRatio = 0.05; //Determines the ratio of blocks:tiles
+        const double tileRatio = 1 - blockRatio; //The amount of empty tiles on the playfield.
+        private int _boxAmount = Convert.ToInt32(Math.Floor(NUM_OF_TILES * _boxRatio)); //The amount of boxes that are to be created on the playfield.
 
         public Field()
         {
             _playfield = new Tile[NUM_OF_TILES];            
         }
 
+        /// <summary>
+        /// SpawnTile Enum is used to specify the tile on which the Hero en Villain spawn.
+        /// It is used as index for the _playfield Tile array.
+        /// </summary>
         private enum SpawnTile
         {
             FirstTile = 0,
             LastTile = NUM_OF_TILES-1
         }
 
+        /// <summary>
+        /// Call upon this method to randomize the tiles in the Tile array.
+        /// </summary>
         private void Shuffle_Tiles()
         {
             //Shuffle the tileArray
@@ -50,6 +60,11 @@ namespace Vang_de_volger
             }
         }
 
+        /// <summary>
+        /// This method creates an amount of Tile class objects equal to the grid size specified on the form the Field object is created on.
+        /// it also assigns each tile it's neighbouring tiles.
+        /// </summary>
+        /// <param name="PlayForm"> The form the Field class object is created on.</param>
         public void CreateField(Form PlayForm)
         {
             int tilecounter = 0;
@@ -97,28 +112,25 @@ namespace Vang_de_volger
         }//CreateField
 
 
-        //Assign Type values to tiles in a Tile class array depending on playfield size
-        private const double _boxRatio = 0.2; //Determine the ratio of boxes:tiles
-        private int _boxAmount = Convert.ToInt32(Math.Floor(NUM_OF_TILES * _boxRatio));
+        /// <summary>
+        /// Creates Field Component objects and puts them on a Tile. The MyTile attribute in the Tile class is used for this.
+        /// </summary>
         public void Reload()
         {
-            Shuffle_Tiles();
+            Shuffle_Tiles(); //_playfield[] Tile array is shuffled to create a randomized field.
 
             //Assign Fieldcomponents to their Tiles
             int i = 0;
-            double wallRatio = 0.05; //Determines the ratio of blocks:tiles
-            double tileRatio = 1 - wallRatio;
-
             while (i < NUM_OF_TILES)
             {
-                if (i <= (NUM_OF_TILES * wallRatio) && i > 0)
+                if (i <= (NUM_OF_TILES * blockRatio) && i > 0)
                 {
                     Block Block = new Block();
                     _playfield[i].MyUnit = Block;
                     _playfield[i].Redraw();
                     i++;
                 }
-                else if (i <= (NUM_OF_TILES * wallRatio + _boxAmount) && i > (NUM_OF_TILES * wallRatio))
+                else if (i <= (NUM_OF_TILES * blockRatio + _boxAmount) && i > (NUM_OF_TILES * blockRatio))
                 {
                     Box newBox = new Box();
                     _playfield[i].MyUnit = newBox;
@@ -134,10 +146,12 @@ namespace Vang_de_volger
                 }
             }
 
+            //The hero spawns on the first tile on the playfield by default.
             player = new Hero(_playfield[(int)SpawnTile.FirstTile]);
             _playfield[(int)SpawnTile.FirstTile].MyUnit = player;
             _playfield[(int)SpawnTile.FirstTile].Redraw();
 
+            //The villain spawn on the last tile on the playfield by default.
             enemy = new Villain(_playfield[(int)SpawnTile.LastTile]);
             _playfield[(int)SpawnTile.LastTile].MyUnit = enemy;
             _playfield[(int)SpawnTile.LastTile].Redraw();

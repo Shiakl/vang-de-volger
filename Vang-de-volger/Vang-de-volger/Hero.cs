@@ -12,6 +12,7 @@ namespace Vang_de_volger
         public Tile myTile;
         private Tile.DIRECTIONS _facing;
         private Image[] _heroSprites = new Image[4];
+        private List<Tile> _tiles_to_swap = new List<Tile>(); /// tiles_to_swap is used to swap the unit on the tile in the direction with the current tile
 
 
         public Hero(Tile spawnTile)
@@ -36,9 +37,8 @@ namespace Vang_de_volger
             myImage = _heroSprites[(int)LastFace];
         }
 
-        public virtual void move(Tile thisTile,Tile.DIRECTIONS direction)
+        public virtual void move(Tile.DIRECTIONS direction)
         {
-            //myTile.Possible_moves();
             SetFacing(direction);
             myTile.Redraw();
 
@@ -69,7 +69,12 @@ namespace Vang_de_volger
             _tiles_to_swap.Clear();
         }
 
-        private List<Tile> _tiles_to_swap = new List<Tile>(); /// tiles_to_swap is used to swap the unit on the tile in the direction with the current tile
+        /// <summary>
+        /// Check if the Unit on the tile next to the hero is pushable. 
+        /// </summary>
+        /// <param name="heroTile">the Tile the hero is on</param>
+        /// <param name="direction">The direction the hero wants to move to.</param>
+        /// <returns>bool</returns>
         public bool Check_Box_Row(Tile heroTile, int direction)
         {
             if (heroTile.myNeighbours[direction] != null)

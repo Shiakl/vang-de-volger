@@ -23,12 +23,17 @@ namespace Vang_de_volger
             MyPanel.Controls.Add(panelPb);
         }
 
+        /// <summary>
+        /// Redraw all the pictureboxes on the Tile panel with the image of the unit it contains.
+        /// </summary>
         public void Redraw()
         {
             panelPb.Image = MyUnit.myImage;
         }
 
-
+        /// <summary>
+        /// Properties that hold the tiles neighbouring this Tile object.
+        /// </summary>
         public Tile neighbourLeft;
         public Tile neighbourRight;
         public Tile neighbourTop;
@@ -42,6 +47,9 @@ namespace Vang_de_volger
             myNeighbours[(int)DIRECTIONS.BOTTOM] = neighbourBottom;
         }
 
+        /// <summary>
+        /// Enum used to specify a direction for movement or neighbour position.
+        /// </summary>
         public enum DIRECTIONS
         {
             LEFT,
