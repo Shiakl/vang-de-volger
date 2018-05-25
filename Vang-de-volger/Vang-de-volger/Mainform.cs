@@ -44,6 +44,9 @@ namespace Vang_de_volger
             _timerVillainMove.Start();
         }
 
+        /// <summary>
+        /// Create the playfield
+        /// </summary>
         public void GenerateField()
         {
             this.Invalidate();
@@ -73,11 +76,13 @@ namespace Vang_de_volger
             }
             else
             {
-                _playZone.enemy.Villain_random_move(_playZone.enemy.myTile);
-                this.Refresh();
+                _playZone.enemy.move(_playZone.enemy.Random_Direction());
             }
         }
 
+        /// <summary>
+        /// Pauses the game
+        /// </summary>
         private void pause_Label_Click(object sender, EventArgs e)
         {
             if (_paused == false)
@@ -95,34 +100,41 @@ namespace Vang_de_volger
             }
         }
 
+        /// <summary>
+        /// Generates a new field and resets the position of the hero and villain.
+        /// </summary>
+
         private void restart_Button_Click(object sender, EventArgs e)
         {
             _timerVillainMove.Stop();
-            _playZone.Reload_Units();
+            _playZone.Reload();
             _timerVillainMove.Start();
             endPb.Visible = false;
             _paused = false;
         }
 
+        /// <summary>
+        /// Keyboard input is sent to the Hero to perform a movement.
+        /// </summary>
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (_paused == false)
             {
                 if (e.KeyCode == Keys.Left)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.LEFT);
+                    _playZone.player.move(Tile.DIRECTIONS.LEFT);
                 }
                 else if (e.KeyCode == Keys.Right)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.RIGHT);
+                    _playZone.player.move(Tile.DIRECTIONS.RIGHT);
                 }
                 else if (e.KeyCode == Keys.Up)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.TOP);
+                    _playZone.player.move(Tile.DIRECTIONS.TOP);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    _playZone.player.move(_playZone.player.heroTile, Tile.DIRECTIONS.BOTTOM);
+                    _playZone.player.move(Tile.DIRECTIONS.BOTTOM);
                 }
             }
         }

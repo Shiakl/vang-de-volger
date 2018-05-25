@@ -9,15 +9,11 @@ namespace Vang_de_volger
 {
     class Block :FieldComponent
     {
-
-        public Block(bool move, bool villain_move, bool push) : base(move, villain_move, push)
+        public Block()
         {
-            allow_move = move;
-            allow_villain_move = villain_move;
-            pushable = push;
+            allow_move = false;
+            pushable = false;
             myImage = Image.FromFile(@"..\..\Resources\Block.jpg");
-
         }
-
     }
 }

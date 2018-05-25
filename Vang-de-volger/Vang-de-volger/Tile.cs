@@ -14,22 +14,26 @@ namespace Vang_de_volger
         public Panel MyPanel = new Panel();
         private PictureBox panelPb;
 
-        public Tile( Panel gridPanel)
+        public Tile(Panel gridPanel)
         {
             MyPanel = gridPanel;
             MyPanel.BackgroundImage = Properties.Resources.Tile;
-
             panelPb = new PictureBox();
             panelPb.BackColor = Color.Transparent;
             MyPanel.Controls.Add(panelPb);
         }
 
+        /// <summary>
+        /// Redraw all the pictureboxes on the Tile panel with the image of the unit it contains.
+        /// </summary>
         public void Redraw()
         {
             panelPb.Image = MyUnit.myImage;
         }
 
-
+        /// <summary>
+        /// Properties that hold the tiles neighbouring this Tile object.
+        /// </summary>
         public Tile neighbourLeft;
         public Tile neighbourRight;
         public Tile neighbourTop;
@@ -43,6 +47,9 @@ namespace Vang_de_volger
             myNeighbours[(int)DIRECTIONS.BOTTOM] = neighbourBottom;
         }
 
+        /// <summary>
+        /// Enum used to specify a direction for movement or neighbour position.
+        /// </summary>
         public enum DIRECTIONS
         {
             LEFT,
@@ -51,65 +58,6 @@ namespace Vang_de_volger
             BOTTOM
         }
     }
-
 }
 
 
-
-/* OLD MOVEMENT CHECKER
-         public bool[] moveArray = new bool[4]; //Array containing bool's that are used to determine whether a direction is moveable for boxes and the hero
-
-        public void Possible_moves()
-        {
-            for (int i = 0; i < myNeighbours.Length; i++)
-            {
-                if (myNeighbours[i] != null)
-                {
-                    if (MyUnit is Box)
-                    {
-                        if (myNeighbours[i].MyUnit is Ground)
-                        {
-                            moveArray[i] = true;
-                        }
-                        else
-                        {
-                            moveArray[i] = false;
-                        }
-                    }
-                    else
-                    {
-                        if (myNeighbours[i].MyUnit is Block || myNeighbours[i].MyUnit is Villain)
-                        {
-                            moveArray[i] = false;
-                        }
-                        else
-                        {
-                            moveArray[i] = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        public bool[] moveArrayVillain = new bool[4];  //Array containing bool's that are used to determine whether a direction is moveable for the villain
-
-        public void Possible_moves_villain()
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (myNeighbours[i] != null)
-                {
-                    if (myNeighbours[i].MyUnit is Block || myNeighbours[i].MyUnit is Box)
-                    {
-                        moveArrayVillain[i] = false;
-                    }
-                    else
-                    {
-                        moveArrayVillain[i] = true;
-                    }
-                }
-            }
-        }
-
- 
- */

@@ -17,57 +17,34 @@ namespace Vang_de_volger
         public Hero player;
         public Villain enemy;
 
-
-        private UNITTYPE[] _unityTypeArray = new UNITTYPE[NUM_OF_TILES];
-        private FieldComponent[] _fieldUnits = new FieldComponent[NUM_OF_TILES];
+        private const double _boxRatio = 0.2; //Determine the ratio of boxes:tiles
+        const double blockRatio = 0.05; //Determines the ratio of blocks:tiles
+        const double tileRatio = 1 - blockRatio; //The amount of empty tiles on the playfield.
+        private int _boxAmount = Convert.ToInt32(Math.Floor(NUM_OF_TILES * _boxRatio)); //The amount of boxes that are to be created on the playfield.
 
         public Field()
         {
             _playfield = new Tile[NUM_OF_TILES];            
         }
 
-        //not scallable
-        private enum UNITTYPE
+        /// <summary>
+        /// SpawnTile Enum is used to specify the tile on which the Hero en Villain spawn.
+        /// It is used as index for the _playfield Tile array.
+        /// </summary>
+        private enum SpawnTile
         {
-            BLOCK,
-            TILE,
-            BOX,
-            HERO,
-            VILLAIN
+            FirstTile = 0,
+            LastTile = NUM_OF_TILES-1
         }
 
-        //Assign Type values to tiles in a Tile class array depending on playfield size
-        private const double _boxRatio = 0.2; //Determine the ratio of boxes:tiles
-        private int _boxAmount = Convert.ToInt32(Math.Floor(NUM_OF_TILES * _boxRatio));
-        private void _Create_UnitTypeArray()
+        /// <summary>
+        /// Call upon this method to randomize the tiles in the Tile array.
+        /// </summary>
+        private void Shuffle_Tiles()
         {
-            //Put MYTYPE values in an array
-            int i = 0;
-            double wallRatio = 0.05; //Determines the ratio of blocks:tiles
-            double tileRatio = 1 - wallRatio;
-
-            while (i < NUM_OF_TILES)
-            {
-                if (i <= (NUM_OF_TILES * wallRatio) && i > 0)
-                {
-                    _unityTypeArray[i] = UNITTYPE.BLOCK;
-                    i++;
-                }
-                else if (i <= (NUM_OF_TILES * wallRatio + _boxAmount) && i > (NUM_OF_TILES * wallRatio))
-                {
-                    _unityTypeArray[i] = UNITTYPE.BOX;
-                    i++;
-                }
-                else
-                {
-                    _unityTypeArray[i] = UNITTYPE.TILE;
-                    i++;
-                }
-            }
-
             //Shuffle the tileArray
             Random rndShuffle = new Random();
-            UNITTYPE tempType;
+            Tile tempTile;
 
             //shuffle 100 times
             for (int shuffle = 0; shuffle < 100; shuffle++)
@@ -76,17 +53,20 @@ namespace Vang_de_volger
                 {
                     //swap 2 types
                     int randomTypeNR = rndShuffle.Next(1, NUM_OF_TILES - 2);
-                    tempType = _unityTypeArray[j];
-                    _unityTypeArray[j] = _unityTypeArray[randomTypeNR];
-                    _unityTypeArray[randomTypeNR] = tempType;
+                    tempTile = _playfield[j];
+                    _playfield[j] = _playfield[randomTypeNR];
+                    _playfield[randomTypeNR] = tempTile;
                 }
             }
         }
 
+        /// <summary>
+        /// This method creates an amount of Tile class objects equal to the grid size specified on the form the Field object is created on.
+        /// it also assigns each tile it's neighbouring tiles.
+        /// </summary>
+        /// <param name="PlayForm"> The form the Field class object is created on.</param>
         public void CreateField(Form PlayForm)
         {
-            _Create_UnitTypeArray();
-
             int tilecounter = 0;
 
             //Create all the Tiles and put Units on the tiles
@@ -101,35 +81,10 @@ namespace Vang_de_volger
                     };
 
                     _playfield[tilecounter] = new Tile(tempPanel);
-
-                    if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
-                    {
-                        Box newBox = new Box(true, false, true);
-                        _playfield[tilecounter].MyUnit = newBox;
-                    }
-                    else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
-                    {
-                        Block Block = new Block(false, false, false);
-                        _playfield[tilecounter].MyUnit = Block;
-                    }
-                    else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
-                    {
-                        Ground EmptyTile = new Ground(true, true, false);
-                        _playfield[tilecounter].MyUnit = EmptyTile;
-                    }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
-                    _playfield[tilecounter].Redraw();
                     tilecounter++;                 
                 }
             }
-      
-            player = new Hero(_playfield[0],false, true, false);
-            _playfield[0].MyUnit = player;
-            _playfield[0].Redraw();
-
-            enemy = new Villain(_playfield[NUM_OF_TILES-1], false, false, false);
-            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
-            _playfield[NUM_OF_TILES - 1].Redraw();
 
             //Add tile neighbours
             for (int tc = 0; tc < NUM_OF_TILES; tc++)
@@ -153,65 +108,54 @@ namespace Vang_de_volger
                 }
                 _playfield[tc].AddNeighbours();
             }
+            Reload();
         }//CreateField
 
-        public void Reload_Units()
+
+        /// <summary>
+        /// Creates Field Component objects and puts them on a Tile. The MyTile attribute in the Tile class is used for this.
+        /// </summary>
+        public void Reload()
         {
-            _Create_UnitTypeArray();
-            int tilecounter = 0;
-            for (int tc = 0; tc < NUM_OF_TILES; tc++)
+            Shuffle_Tiles(); //_playfield[] Tile array is shuffled to create a randomized field.
+
+            //Assign Fieldcomponents to their Tiles
+            int i = 0;
+            while (i < NUM_OF_TILES)
             {
-                if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
+                if (i <= (NUM_OF_TILES * blockRatio) && i > 0)
                 {
-                    Box newBox = new Box(true, false, true);
-                    _playfield[tilecounter].MyUnit = newBox;
+                    Block Block = new Block();
+                    _playfield[i].MyUnit = Block;
+                    _playfield[i].Redraw();
+                    i++;
                 }
-                else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
+                else if (i <= (NUM_OF_TILES * blockRatio + _boxAmount) && i > (NUM_OF_TILES * blockRatio))
                 {
-                    Block Block = new Block(false, false, false);
-                    _playfield[tilecounter].MyUnit = Block;
+                    Box newBox = new Box();
+                    _playfield[i].MyUnit = newBox;
+                    _playfield[i].Redraw();
+                    i++;
                 }
-                else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
+                else
                 {
-                    Ground EmptyTile = new Ground(true, true, false);
-                    _playfield[tilecounter].MyUnit = EmptyTile;
+                    Ground EmptyTile = new Ground();
+                    _playfield[i].MyUnit = EmptyTile;
+                    _playfield[i].Redraw();
+                    i++;
                 }
-                _playfield[tilecounter].Redraw();
-                tilecounter++;
             }
 
-            player = new Hero(_playfield[0], false, true, false);
-            _playfield[0].MyUnit = player;
-            _playfield[0].Redraw();
+            //The hero spawns on the first tile on the playfield by default.
+            player = new Hero(_playfield[(int)SpawnTile.FirstTile]);
+            _playfield[(int)SpawnTile.FirstTile].MyUnit = player;
+            _playfield[(int)SpawnTile.FirstTile].Redraw();
 
-            enemy = new Villain(_playfield[NUM_OF_TILES - 1], false, false, false);
-            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
-            _playfield[NUM_OF_TILES - 1].Redraw();
-
-        }
-
-        /*
-        public Tile FindHero()
-        {
-            int searchCounter = 0;
-            while(!(_playfield[searchCounter].MyUnit is Hero))
-            {
-                searchCounter++;
-            }
-            return _playfield[searchCounter];
-        }
-
-        public Tile FindVillain()
-        {
-            int searchCounter = 0;
-            while (!(_playfield[searchCounter].MyUnit is Villain))
-            {
-                searchCounter++;
-            }
-            return _playfield[searchCounter];
-        }
-        */
-
+            //The villain spawn on the last tile on the playfield by default.
+            enemy = new Villain(_playfield[(int)SpawnTile.LastTile]);
+            _playfield[(int)SpawnTile.LastTile].MyUnit = enemy;
+            _playfield[(int)SpawnTile.LastTile].Redraw();
+        }//Reload
     }//Field
 
 }

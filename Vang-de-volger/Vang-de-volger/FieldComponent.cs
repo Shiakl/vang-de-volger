@@ -8,22 +8,24 @@ using System.Windows.Forms;
 
 namespace Vang_de_volger
 {
-    class FieldComponent
+    abstract class FieldComponent
     {
         public Image myImage;
-
         public bool allow_move;
-        public bool allow_villain_move;
         public bool pushable;
 
-
-        public FieldComponent(bool move, bool villain_move, bool push)
+        public FieldComponent()
         {
-            allow_move = move;
-            allow_villain_move = villain_move;
-            pushable = push;
+            myImage = null;
+            allow_move = true;
+            pushable = false;
         }
 
+        /// <summary>
+        /// Method is used to swap the MyUnit of a Tile class object with another.
+        /// </summary>
+        /// <param name="old_Tile">The Tile the fieldcomponent is located</param>
+        /// <param name="new_Tile">The destination Tile of the fieldcomponent</param>
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
         {
             FieldComponent temp_Unit;
@@ -33,10 +35,5 @@ namespace Vang_de_volger
             old_Tile.Redraw();
             new_Tile.Redraw();
         }
-
-        //Checks allowed in parent class for different implementations of the children.
-        //Twee verschillende move functies
-        //decorator pattern, strategy pattern
-
     }
 }

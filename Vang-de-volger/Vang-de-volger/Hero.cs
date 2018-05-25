@@ -9,18 +9,18 @@ namespace Vang_de_volger
 {
     class Hero : FieldComponent
     {
-        public Tile heroTile;
+        public Tile myTile;
         private Tile.DIRECTIONS _facing;
         private Image[] _heroSprites = new Image[4];
+        private List<Tile> _tiles_to_swap = new List<Tile>(); /// tiles_to_swap is used to swap the unit on the tile in the direction with the current tile
 
 
-        public Hero(Tile spawnTile, bool move, bool villain_move, bool push) : base(move, villain_move,push )
+        public Hero(Tile spawnTile)
         {
-            heroTile = spawnTile;
+            myTile = spawnTile;
 
-            allow_move = move;
-            allow_villain_move = villain_move;
-            pushable = push;
+            allow_move = false;
+            pushable = false;
 
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;
@@ -37,9 +37,8 @@ namespace Vang_de_volger
             myImage = _heroSprites[(int)LastFace];
         }
 
-        public void move(Tile myTile,Tile.DIRECTIONS direction)
+        public virtual void move(Tile.DIRECTIONS direction)
         {
-            //myTile.Possible_moves();
             SetFacing(direction);
             myTile.Redraw();
 
@@ -56,7 +55,7 @@ namespace Vang_de_volger
                             Swap_MyUnit(_tiles_to_swap[b], _tiles_to_swap[b].myNeighbours[(int)direction]);
                         }
                         Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
-                        heroTile = myTile.myNeighbours[(int)direction];
+                        this.myTile = myTile.myNeighbours[(int)direction];
                     }
                 }
                 //Box push ends here
@@ -64,13 +63,18 @@ namespace Vang_de_volger
                 {
                     //executemovement
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
-                    heroTile = myTile.myNeighbours[(int)direction];
+                    this.myTile = myTile.myNeighbours[(int)direction];
                 }
             }
             _tiles_to_swap.Clear();
         }
 
-        private List<Tile> _tiles_to_swap = new List<Tile>(); /// tiles_to_swap is used to swap the unit on the tile in the direction with the current tile
+        /// <summary>
+        /// Check if the Unit on the tile next to the hero is pushable. 
+        /// </summary>
+        /// <param name="heroTile">the Tile the hero is on</param>
+        /// <param name="direction">The direction the hero wants to move to.</param>
+        /// <returns>bool</returns>
         public bool Check_Box_Row(Tile heroTile, int direction)
         {
             if (heroTile.myNeighbours[direction] != null)
