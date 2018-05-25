@@ -11,9 +11,12 @@ namespace Vang_de_volger
     {
         public Tile myTile;
 
-        public Villain(Tile spawnTile)
+        public Villain(Tile spawnTile, bool move, bool villain_move, bool push) : base(move, villain_move, push)
         {
             myTile = spawnTile;
+            allow_move = move;
+            allow_villain_move = villain_move;
+            pushable = push;
             myImage = Image.FromFile(@"..\..\Resources\Villain.png");
         }
 
@@ -22,13 +25,17 @@ namespace Vang_de_volger
         private int _move_count;
         public bool villain_Lose(Tile myTile)
         {
-            myTile.Possible_moves_villain();
+            //myTile.Possible_moves_villain();
             _move_count = 0;
             for (int vd = 0; vd < 4; vd++)
             {
-                if (myTile.moveArrayVillain[vd] == false)
+                if(myTile.myNeighbours[vd] != null)
                 {
-                    _move_count++;
+                    if (myTile.myNeighbours[vd].MyUnit.allow_villain_move == false)
+                    {
+                        _move_count++;
+                    }
+
                 }
             }
             if (_move_count == 4)
@@ -68,7 +75,7 @@ namespace Vang_de_volger
         private bool _hero_Search = false;
         public void Villain_random_move(Tile villainTile)
         {
-            villainTile.Possible_moves_villain();
+            //villainTile.Possible_moves_villain();
             int move_Numbers = 0;
             int arraycount = 0;
 
@@ -86,12 +93,16 @@ namespace Vang_de_volger
             }
             if (_hero_Search == false)
             {
-                for (int a = 0; a < villainTile.moveArray.Length; a++)
+                for (int a = 0; a < villainTile.myNeighbours.Length; a++)
                 {
-                    if (villainTile.moveArrayVillain[a] == true)
+                    if(villainTile.myNeighbours[a] != null)
+                    {
+                    if (villainTile.myNeighbours[a].MyUnit.allow_villain_move == true)
                     {
                         _possible_Directions[arraycount] = (Tile.DIRECTIONS)a;
                         arraycount++;
+                    }
+
                     }
                 }
 
@@ -102,6 +113,7 @@ namespace Vang_de_volger
                 myTile = villainTile.myNeighbours[(int)_chosen_Random_Direction];
             }
         }
+
 
     }
 }

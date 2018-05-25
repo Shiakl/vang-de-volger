@@ -10,11 +10,18 @@ namespace Vang_de_volger
 {
     class FieldComponent
     {
-        public Image myImage; 
+        public Image myImage;
 
-        public FieldComponent()
+        public bool allow_move;
+        public bool allow_villain_move;
+        public bool pushable;
+
+
+        public FieldComponent(bool move, bool villain_move, bool push)
         {
-
+            allow_move = move;
+            allow_villain_move = villain_move;
+            pushable = push;
         }
 
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)

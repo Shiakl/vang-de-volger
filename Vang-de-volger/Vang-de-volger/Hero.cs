@@ -14,9 +14,14 @@ namespace Vang_de_volger
         private Image[] _heroSprites = new Image[4];
 
 
-        public Hero(Tile spawnTile)
+        public Hero(Tile spawnTile, bool move, bool villain_move, bool push) : base(move, villain_move,push )
         {
             heroTile = spawnTile;
+
+            allow_move = move;
+            allow_villain_move = villain_move;
+            pushable = push;
+
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;
 
@@ -34,7 +39,7 @@ namespace Vang_de_volger
 
         public void move(Tile myTile,Tile.DIRECTIONS direction)
         {
-            myTile.Possible_moves();
+            //myTile.Possible_moves();
             SetFacing(direction);
             myTile.Redraw();
 
@@ -43,7 +48,7 @@ namespace Vang_de_volger
                 //Box Push Start here
                 if (myTile.myNeighbours[(int)direction].MyUnit is Box)
                 {
-                    myTile.myNeighbours[(int)direction].Possible_moves();
+                    //myTile.myNeighbours[(int)direction].Possible_moves();
                     if (Check_Box_Row(myTile, (int)direction) == true)
                     {
                         for (int b = _tiles_to_swap.Count() - 1; b >= 0; b--)
@@ -55,7 +60,7 @@ namespace Vang_de_volger
                     }
                 }
                 //Box push ends here
-                else if (myTile.moveArray[(int)direction] == true)
+                else if (myTile.myNeighbours[(int)direction].MyUnit.allow_move == true)
                 {
                     //executemovement
                     Swap_MyUnit(myTile, myTile.myNeighbours[(int)direction]);
@@ -70,12 +75,12 @@ namespace Vang_de_volger
         {
             if (heroTile.myNeighbours[direction] != null)
             {
-                if (heroTile.myNeighbours[direction].MyUnit is Box)
+                if (heroTile.myNeighbours[direction].MyUnit.pushable == true)
                 {
                     _tiles_to_swap.Add(heroTile.myNeighbours[direction]);
                     return Check_Box_Row(heroTile.myNeighbours[direction], direction);
                 }
-                else if (heroTile.myNeighbours[direction].MyUnit is Ground)
+                else if (heroTile.myNeighbours[direction].MyUnit.allow_move == true && heroTile.myNeighbours[direction].MyUnit.pushable == false)
                 {
                     return true;
                 }
