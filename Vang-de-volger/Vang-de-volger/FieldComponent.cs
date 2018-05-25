@@ -11,10 +11,8 @@ namespace Vang_de_volger
     abstract class FieldComponent
     {
         public Image myImage;
-
         public bool allow_move;
         public bool pushable;
-
 
         public FieldComponent()
         {

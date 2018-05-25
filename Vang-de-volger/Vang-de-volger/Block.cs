@@ -9,7 +9,6 @@ namespace Vang_de_volger
 {
     class Block :FieldComponent
     {
-
         public Block()
         {
             allow_move = false;

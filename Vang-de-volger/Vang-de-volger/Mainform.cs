@@ -97,7 +97,7 @@ namespace Vang_de_volger
         private void restart_Button_Click(object sender, EventArgs e)
         {
             _timerVillainMove.Stop();
-            _playZone.Reload_Units();
+            _playZone.Reload();
             _timerVillainMove.Start();
             endPb.Visible = false;
             _paused = false;

@@ -9,7 +9,6 @@ namespace Vang_de_volger
 {
     class Box : FieldComponent
     {
-
         public Box()
         {
             allow_move = true;

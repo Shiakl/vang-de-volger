@@ -24,7 +24,7 @@ namespace Vang_de_volger
         {
             //myTile.Possible_moves_villain();
             _move_count = 0;
-            for (int vd = 0; vd < 4; vd++)
+            for (int vd = 0; vd < myTile.myNeighbours.Length; vd++)
             {
                 if(myTile.myNeighbours[vd] != null)
                 {
@@ -38,7 +38,7 @@ namespace Vang_de_volger
                     _move_count++;
                 }
             }
-            if (_move_count == 4)
+            if (_move_count == myTile.myNeighbours.Length)
             {
                 return true;
             }
@@ -53,7 +53,7 @@ namespace Vang_de_volger
         /// <returns></returns>
         public bool Catch_Hero(Tile myTile)
         {
-            for (int scan = 0; scan < 4; scan++)
+            for (int scan = 0; scan < myTile.myNeighbours.Length; scan++)
             {
                 if (myTile.myNeighbours[scan] != null)
                 {
