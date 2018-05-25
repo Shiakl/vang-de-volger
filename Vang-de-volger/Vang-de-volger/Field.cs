@@ -24,6 +24,7 @@ namespace Vang_de_volger
             _playfield = new Tile[NUM_OF_TILES];            
         }
 
+        //not scallable
         private enum UNITTYPE
         {
             BLOCK,
