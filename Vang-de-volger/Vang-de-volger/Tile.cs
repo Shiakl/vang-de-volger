@@ -18,7 +18,6 @@ namespace Vang_de_volger
         {
             MyPanel = gridPanel;
             MyPanel.BackgroundImage = Properties.Resources.Tile;
-
             panelPb = new PictureBox();
             panelPb.BackColor = Color.Transparent;
             MyPanel.Controls.Add(panelPb);
@@ -51,7 +50,6 @@ namespace Vang_de_volger
             BOTTOM
         }
     }
-
 }
 
 

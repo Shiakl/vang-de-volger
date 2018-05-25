@@ -26,6 +26,12 @@ namespace Vang_de_volger
             _playfield = new Tile[NUM_OF_TILES];            
         }
 
+        private enum SpawnTile
+        {
+            FirstTile = 0,
+            LastTile = NUM_OF_TILES-1
+        }
+
         private enum UNITTYPE
         {
             BLOCK,
@@ -122,13 +128,13 @@ namespace Vang_de_volger
                 }
             }
       
-            player = new Hero(_playfield[0]);
-            _playfield[0].MyUnit = player;
-            _playfield[0].Redraw();
+            player = new Hero(_playfield[(int)SpawnTile.FirstTile]);
+            _playfield[(int)SpawnTile.FirstTile].MyUnit = player;
+            _playfield[(int)SpawnTile.FirstTile].Redraw();
 
-            enemy = new Villain(_playfield[NUM_OF_TILES-1]);
-            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
-            _playfield[NUM_OF_TILES - 1].Redraw();
+            enemy = new Villain(_playfield[(int)SpawnTile.LastTile]);
+            _playfield[(int)SpawnTile.LastTile].MyUnit = enemy;
+            _playfield[(int)SpawnTile.LastTile].Redraw();
 
             //Add tile neighbours
             for (int tc = 0; tc < NUM_OF_TILES; tc++)
@@ -179,13 +185,13 @@ namespace Vang_de_volger
                 tilecounter++;
             }
 
-            player = new Hero(_playfield[0]);
-            _playfield[0].MyUnit = player;
-            _playfield[0].Redraw();
+            player = new Hero(_playfield[(int)SpawnTile.FirstTile]);
+            _playfield[(int)SpawnTile.FirstTile].MyUnit = player;
+            _playfield[(int)SpawnTile.FirstTile].Redraw();
 
-            enemy = new Villain(_playfield[NUM_OF_TILES - 1]);
-            _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
-            _playfield[NUM_OF_TILES - 1].Redraw();
+            enemy = new Villain(_playfield[(int)SpawnTile.LastTile]);
+            _playfield[(int)SpawnTile.LastTile].MyUnit = enemy;
+            _playfield[(int)SpawnTile.LastTile].Redraw();
 
         }//Reload Units
 

@@ -16,6 +16,5 @@ namespace Vang_de_volger
             pushable = false;
             myImage = Image.FromFile(@"..\..\Resources\Block.jpg");
         }
-
     }
 }
