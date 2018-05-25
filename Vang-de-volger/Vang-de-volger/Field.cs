@@ -103,17 +103,17 @@ namespace Vang_de_volger
 
                     if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
                     {
-                        Box newBox = new Box(true, false, true);
+                        Box newBox = new Box();
                         _playfield[tilecounter].MyUnit = newBox;
                     }
                     else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
                     {
-                        Block Block = new Block(false, false, false);
+                        Block Block = new Block();
                         _playfield[tilecounter].MyUnit = Block;
                     }
                     else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
                     {
-                        Ground EmptyTile = new Ground(true, true, false);
+                        Ground EmptyTile = new Ground();
                         _playfield[tilecounter].MyUnit = EmptyTile;
                     }
                     PlayForm.Controls.Add(_playfield[tilecounter].MyPanel);
@@ -122,11 +122,11 @@ namespace Vang_de_volger
                 }
             }
       
-            player = new Hero(_playfield[0],false, true, false);
+            player = new Hero(_playfield[0]);
             _playfield[0].MyUnit = player;
             _playfield[0].Redraw();
 
-            enemy = new Villain(_playfield[NUM_OF_TILES-1], false, false, false);
+            enemy = new Villain(_playfield[NUM_OF_TILES-1]);
             _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 
@@ -162,28 +162,28 @@ namespace Vang_de_volger
             {
                 if (_unityTypeArray[tilecounter] == UNITTYPE.BOX)
                 {
-                    Box newBox = new Box(true, false, true);
+                    Box newBox = new Box();
                     _playfield[tilecounter].MyUnit = newBox;
                 }
                 else if (_unityTypeArray[tilecounter] == UNITTYPE.BLOCK)
                 {
-                    Block Block = new Block(false, false, false);
+                    Block Block = new Block();
                     _playfield[tilecounter].MyUnit = Block;
                 }
                 else if (_unityTypeArray[tilecounter] == UNITTYPE.TILE)
                 {
-                    Ground EmptyTile = new Ground(true, true, false);
+                    Ground EmptyTile = new Ground();
                     _playfield[tilecounter].MyUnit = EmptyTile;
                 }
                 _playfield[tilecounter].Redraw();
                 tilecounter++;
             }
 
-            player = new Hero(_playfield[0], false, true, false);
+            player = new Hero(_playfield[0]);
             _playfield[0].MyUnit = player;
             _playfield[0].Redraw();
 
-            enemy = new Villain(_playfield[NUM_OF_TILES - 1], false, false, false);
+            enemy = new Villain(_playfield[NUM_OF_TILES - 1]);
             _playfield[NUM_OF_TILES - 1].MyUnit = enemy;
             _playfield[NUM_OF_TILES - 1].Redraw();
 

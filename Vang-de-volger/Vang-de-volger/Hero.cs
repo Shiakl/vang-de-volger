@@ -14,13 +14,12 @@ namespace Vang_de_volger
         private Image[] _heroSprites = new Image[4];
 
 
-        public Hero(Tile spawnTile, bool move, bool villain_move, bool push) : base(move, villain_move,push )
+        public Hero(Tile spawnTile)
         {
             heroTile = spawnTile;
 
-            allow_move = move;
-            allow_villain_move = villain_move;
-            pushable = push;
+            allow_move = false;
+            pushable = false;
 
             myImage = Image.FromFile(@"..\..\Resources\Hero.png");
             _facing = Tile.DIRECTIONS.BOTTOM;

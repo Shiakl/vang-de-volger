@@ -74,7 +74,6 @@ namespace Vang_de_volger
             else
             {
                 _playZone.enemy.Villain_random_move(_playZone.enemy.myTile);
-                this.Refresh();
             }
         }
 

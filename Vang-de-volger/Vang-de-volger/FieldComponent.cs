@@ -13,15 +13,14 @@ namespace Vang_de_volger
         public Image myImage;
 
         public bool allow_move;
-        public bool allow_villain_move;
         public bool pushable;
 
 
-        public FieldComponent(bool move, bool villain_move, bool push)
+        public FieldComponent()
         {
-            allow_move = move;
-            allow_villain_move = villain_move;
-            pushable = push;
+            myImage = null;
+            allow_move = true;
+            pushable = false;
         }
 
         public void Swap_MyUnit(Tile old_Tile, Tile new_Tile)
